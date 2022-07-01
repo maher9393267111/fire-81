@@ -7,14 +7,19 @@ import { getAnalytics, logEvent } from "firebase/analytics"
 
 export default function Home() {
 
-useEffect(()=>{
-  analytics.logEvent('page_view', {
-    page_path: '/'
+// useEffect(()=>{
+//   analytics.logEvent('page_view', {
+//     page_path: '/'
 
-  })
+//   })
+// }
+// ,[])
+
+if (process.env.NODE_ENV == "production") {
+  useEffect(() => {
+    analytics.app.automaticDataCollectionEnabled = true;
+  }, []);
 }
-,[])
-
 
 
   return (
