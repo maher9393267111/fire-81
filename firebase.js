@@ -39,8 +39,18 @@ export const auth = getAuth();
 
 
 
+export const analytics = () => {
+  if (typeof window !== "undefined") {
+   //  return firebase.analytics()
+    return getAnalytics(app)
+  } else {
+     return null
+  }
+}
 
- export  const analytics = getAnalytics(app);
+
+
+ //export  const analytics = getAnalytics(app);
 
 
 export {

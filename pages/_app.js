@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import { wrapper } from "../store/index";
 import Context from '../context/index'
 import Script from "next/script";
-
+import React from 'react';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
 
 <Script
         strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-B2S28WESDV`}
       />
 
       <Script strategy="lazyOnload">
