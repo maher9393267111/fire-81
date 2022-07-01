@@ -7,13 +7,21 @@ import { getAnalytics, logEvent } from "firebase/analytics"
 
 export default function Home() {
 
+// useEffect(() => {
+
+//   analytics().logEvent('screen_count', {
+//     name : 'Home',
+//   })
+
+// }, [])
+
 useEffect(() => {
+const analytics = getAnalytics();
+logEvent(analytics, "screen_view", {
+  firebase_screen: "Home",
+});
+}, []);
 
-analytics().logEvent('test', {
-  test: 'test'
-})
-
-}, [])
 
 
 
