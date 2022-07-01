@@ -7,7 +7,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import 'antd/dist/antd.css';
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return  (
+
+<Context>
+
+<Component {...pageProps} />
+</Context>
+
+  )
+  
+  
 }
 
 export default wrapper.withRedux( MyApp);

@@ -1,9 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-
+import { analytics } from '../firebase'
+import { useEffect,useState } from 'react'
+import { getAnalytics, logEvent } from "firebase/analytics"
 
 export default function Home() {
+
+useEffect(()=>{
+  analytics.logEvent('page_view', {
+    page_path: '/'
+
+  })
+}
+,[])
+
+
+
   return (
     <div className={styles.container}>
       <Head>
