@@ -7,7 +7,13 @@ import { getAnalytics, logEvent } from "firebase/analytics"
 
 export default function Home() {
 
+useEffect(() => {
 
+analytics().logEvent('test', {
+  test: 'test'
+})
+
+}, [])
 
 
 

@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return  (
 
     <React.Fragment>
-
+{/* 
 <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=G-B2S28WESDV`}
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
               page_path: window.location.pathname,
             });
                 `}
-      </Script>
+      </Script> */}
 
 
 
