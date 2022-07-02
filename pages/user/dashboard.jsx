@@ -3,6 +3,7 @@ import {useAuth} from '../../context/index'
 import Layout from '../../components/layout';
 import { useRouter } from 'next/router';
 import {useEffect,useState} from 'react';
+import UserLinks from '../../components/user/userLinks';
 
 const Dashboard = () => {
 const router = useRouter();
@@ -31,10 +32,29 @@ if ( !userinfo?.name) {
 >
 <div>
 
-<div className=' my-8'>
+<div className=' grid grid-cols-12 my-8'>
 
 
-<div className=' border-2 border-black min-h-[250px] w-[455px] mx-auto'>
+{/* -------user Links --- */}
+
+<div className=' col-span-4'>
+
+<div>
+
+    <UserLinks userid ={userinfo.id} />
+
+</div>
+
+
+
+</div>
+
+
+<div  className=' col-span-8 '>
+
+
+
+<div className=' border-2 border-black min-h-[250px] w-[455px] '>
 
 
 <div>
@@ -73,6 +93,7 @@ if ( !userinfo?.name) {
 
 </div>
 
+</div>
 
 
 
