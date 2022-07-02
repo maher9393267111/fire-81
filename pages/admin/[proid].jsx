@@ -1,7 +1,7 @@
 import React from 'react';
 import {useRouter} from 'next/router';
 import { doc, getDoc } from 'firebase/firestore';
-
+import safeJsonStringify from "safe-json-stringify";
   import { db, } from "../../firebase";
 const Proid = ({product}) => {
 
@@ -17,6 +17,7 @@ const router = useRouter();
         <div>
         
         {product?.name}
+        {product?.id}
         </div>
     );
 }
@@ -30,15 +31,20 @@ export async function getServerSideProps(context) {
     const id = context.params.proid;
     const snapshot = await getDoc(doc(db, 'Pro3', id));
   
-    const product = snapshot.data();
+    const productdata = snapshot.data();
   
-    if (!product) {
+    if (!productdata) {
       return {
         notFound: true,
       };
     }
   
-    product.id = snapshot.id;
+   // productdata.id = snapshot.id;
+    
+    // strignfy the data
+    const product = JSON.parse(
+        safeJsonStringify({ id: snapshot.id, ...snapshot.data() }) // needed for dates
+      )
   
     return {
       props: { product },

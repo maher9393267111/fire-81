@@ -188,7 +188,7 @@ const router = useRouter();
       ],
       sold: 0,
       color: values.product.color,
-   //   createdAt: serverTimestamp(),
+      createdAt: serverTimestamp(),
       //description:values.product.description,
     };
 
@@ -374,9 +374,7 @@ const router = useRouter();
                         <p
                           onClick={() => {
                             deleteproduct(product.id);
-                            // if (products === []) {
-                            //   setIsupdate(false);
-                            // }
+                           setImages([])
 
                           //  setRefreshcategory(!refreshcategory);
                           }}
