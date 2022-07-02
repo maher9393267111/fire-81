@@ -46,7 +46,7 @@ const AuthContext = ({ children }) => {
   const [currentuser, setUser] = useState({});
   const [userinfo, setUserinfo] = useState({});
   const [groupid_upate, setGroupid_update] = useState("");
-  const [products, setProducts] = useState([]);
+  const [productsNew, setProductsNew] = useState([]);
   const dispatch = useDispatch();
 
 
@@ -144,36 +144,7 @@ const AuthContext = ({ children }) => {
 
 
 
-  const ProductsBY = async (orderby) => {
- 
   
-  
-
-    onSnapshot(
-      query(
-        collection(db, "Pro3"),
-      //  where("categoryid", "in", categories),
-       
-        //  where('name', '!=' , prod   ),
-        orderBy(orderby, "desc")
-        // ,
-        // limit(3),
-        // startAt(startat)
-      ),
-      (snapshot) => {
-        const productsArr = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-     //   dispatch(setProducts(productsArr));
-setProducts(productsArr);
-console.log("*️⃣🆗️*️⃣🆗️*️⃣🆗️",productsArr);
-        return productsArr;
-      }
-    );
-  };
-
 
 
 
@@ -208,6 +179,24 @@ console.log("*️⃣🆗️*️⃣🆗️*️⃣🆗️",productsArr);
 
 
 
+ const ProductsBY= (orderby) => {
+  return getDocs(query(collection(db, "Pro3"),    
+  orderBy(orderby, "desc"))).then((querySnapshot) => {
+
+    var data = [];
+    querySnapshot.forEach((doc) => {
+   
+        console.log("proucts is exist");
+        
+        data.push({ ...doc.data(),id: doc.id  })
+      
+    });
+  //  setProductsNew(data);
+
+    return  data;
+  });
+}
+
 
 
 
@@ -224,8 +213,8 @@ console.log("*️⃣🆗️*️⃣🆗️*️⃣🆗️",productsArr);
     logout,
     RealatedProducts,
     ProductsBY,
-    setProducts,
-    products
+    setProductsNew,
+    productsNew
     //BestSellersProducts,
  
   

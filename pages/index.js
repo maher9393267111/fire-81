@@ -10,9 +10,10 @@ import {useSelector,useDispatch} from 'react-redux'
 import {setProducts,setName} from '../store/global'
 export default function Home({}) {
 
-//const [products, setProducts] = useState([])
-const {ProductsBY,products} = useAuth()
-const {} = useSelector(state=>state.global)
+const [newproducts, setNewProducts] = useState([])
+const [bestSellerProducts, setBestSellerProducts] = useState([])
+const {ProductsBY} = useAuth()
+
 const dispatch = useDispatch()
 useEffect(() => {
 const analytics = getAnalytics();
@@ -24,13 +25,23 @@ logEvent(analytics, "screen_view", {
 
 useEffect(() => {
 
-ProductsBY('createdAt')
-
-
-
+ProductsBY('createdAt').then(res=>{
+  console.log(' new Products--->',res)
+  setNewProducts(res)
+})
 
 }, [])
 
+
+useEffect(() => {
+
+  ProductsBY('sold').then(res=>{
+    console.log('Best seller Products--->',res)
+    setBestSellerProducts(res)
+  })
+  
+  }, [])
+  
 
 
 
@@ -52,7 +63,7 @@ ProductsBY('createdAt')
 >
 
 <div>
- {products?.length}
+
 </div>
 
 
