@@ -65,7 +65,7 @@ export default function Home({}) {
                   {bestSellerProducts.map((product, index) => {
                     return (
                       <div className=" my-4 mx-4" key={product.id}>
-                        <Card product={product} />
+                        <Card show={true} product={product} />
                       </div>
                     );
                   })}
@@ -93,7 +93,7 @@ export default function Home({}) {
                   {newproducts.map((product, index) => {
                     return (
                       <div className=" my-4 mx-4" key={product.id}>
-                        <Card product={product} />
+                        <Card show={true} product={product} />
                       </div>
                     );
                   })}

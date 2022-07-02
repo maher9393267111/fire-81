@@ -5,7 +5,7 @@ import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import  Link  from "next/link";
 
 const { Meta } = Card;
-const CardComponent = ({product}) => {
+const CardComponent = ({product ,show=false}) => {
 
     const { images, name, desc, id } = product;
 
@@ -14,7 +14,7 @@ const CardComponent = ({product}) => {
            
            <>
            <div>
-     <div className="max-w-sm rounded sm:h-[366px]  lg:h-[477px] overflow-hidden shadow-lg">
+     <div className={ ` ${!show ? 'w-[600px] mx-auto' : ''}  rounded sm:h-[366px]  lg:h-[477px] overflow-hidden shadow-lg`}>
 
 
 
@@ -33,7 +33,7 @@ const CardComponent = ({product}) => {
         { desc &&  desc?.slice(0,40)}
     </p> */}
    </div>
-  <div className="px-6  md:w-[252px]  pb-2">
+  <div className={ ` px-6  ${!show ? 'w-full' : 'md:w-[252px]'}   pb-2`}>
 
 <div className=" text-center">
     <p className=" font-bold">{product.price}$</p>
@@ -52,13 +52,15 @@ const CardComponent = ({product}) => {
 
 {/* // flex icons- */}
 
-<div className=" flex ml-4   justify-between gap-4">
+<div className={ `  ${show ? 'flex' : "text-center "}  ml-4   justify-between gap-4`}>
 
 <div>
-    <img className=" w-10 h-10  object-contain rounded-b-full" src="https://cdn2.iconfinder.com/data/icons/commerce-shadow/100/.svg-3-256.png"/>
+    <img className={ ` ${ show ? '' : 'inline-block '} w-10 h-10  object-contain rounded-b-full`} src="https://cdn2.iconfinder.com/data/icons/commerce-shadow/100/.svg-3-256.png"/>
 
-<p className="text-[10px]">Add to cart</p>
+<p className={` ${show ? 'text-[12px]' : "text-[18px] font-bold "} `}>Add to cart</p>
 </div>
+
+{show && (
 
 <Link href={`/product/${id}`}><a >
 
@@ -72,6 +74,7 @@ const CardComponent = ({product}) => {
 
  </div>  
 </a></Link>
+)}
 
 
 

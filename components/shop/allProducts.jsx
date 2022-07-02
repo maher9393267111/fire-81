@@ -92,7 +92,7 @@ className='  bg-blue-600  mx-4 rounded-full p-2 text-white font-bold'>ALL Produc
 {products
            
             .map((product) => (
-              <Card key={product.id} product={product} />
+              <Card key={product.id} show={true} product={product} />
             ))}
 
 </div>
