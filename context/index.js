@@ -222,7 +222,7 @@ console.log("categories",data);
 
 
 const AllProducts= () => {
-  return getDocs(query(collection(db, "Pro3"),    
+  return getDocs(query(collection(db, "Pro3"),limit(3),    
   //orderBy('orderby', "desc")
   )).then((querySnapshot) => {
 
@@ -279,6 +279,41 @@ console.log("---->💠💠💠",searchedproducts);
 };
 
 
+ // search products  by price  max and min
+
+
+ const ProductsByPrice = async (price) => {
+ 
+  console.log(" price data is is--- 🔴🔴", "-------", price);
+
+
+  onSnapshot(
+    query(
+      collection(db, "Pro3"),
+      where("price", ">=", price[0]),
+      where("price", "<=", price[1])
+      //  where('name', '!=' , prod   ),
+      // orderBy("id", "desc")
+      // ,
+      // limit(3),
+      // startAt(startat)
+    ),
+    (snapshot) => {
+      const productsArr = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setSearchedproducts(productsArr);
+      //dispatch(fetchsearchedproducts(productsArr));
+
+      return productsArr;
+    }
+  );
+};
+
+
+
 
 
 
@@ -302,6 +337,7 @@ console.log("---->💠💠💠",searchedproducts);
     AllProducts,
     searchedproducts,
     setSearchedproducts,
+    ProductsByPrice,
    
  
   

@@ -14,14 +14,25 @@ const {searchMode} = useSelector(state => state.global);
 const {userinfo} = useAuth();
 const [categoryIds, setCategoryIds] = useState([]);
 const [ok, setOk] = useState(false);
+const [price, setPrice] = useState([0, 1000]);
+const { ProductsBySelectedCategories , ProductsByPrice } = useAuth();
 
-const { ProductsBySelectedCategories  } = useAuth();
+
+const handleSlider = (value) => {
+    //setCategoryIds([]);
+     //dispatch(setsearchtext(""));
+     dispatch(setsearchmode(true));
+     setPrice(value);
+     console.log("price --💬💬", price);
+     // global filter price function
+    ProductsByPrice(price);
+     setTimeout(() => {
+       setOk(!ok);
+     }, 300);
+   };
 
 
-const handlemode = () => {
-dispatch(setsearchmode(!searchMode));
 
-}
 
 
 // categories //
@@ -107,6 +118,32 @@ else  {
 
 
 <Menu defaultOpenKeys={["1", "2"]} mode="inline">
+
+
+{/* ---filter by price Slider---- */}
+
+<SubMenu
+            key="1"
+            title={
+              <span className="h6">
+                <DollarOutlined /> Price
+              </span>
+            }
+          >
+            <div>
+              <Slider
+                className="ml-4 mr-4"
+                tipFormatter={(v) => `$${v}`}
+                range
+                value={price}
+                onChange={handleSlider}
+                max="1000"
+              />
+            </div>
+          </SubMenu>
+
+
+
 
 
 <SubMenu
