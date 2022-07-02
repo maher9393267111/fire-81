@@ -6,11 +6,14 @@ import { useEffect,useState } from 'react'
 import { getAnalytics, logEvent } from "firebase/analytics"
 import Layout from '../components/layout'
 import { useAuth } from '../context'
+import {useSelector,useDispatch} from 'react-redux'
+import {setProducts,setName} from '../store/global'
 export default function Home({}) {
 
-const [products, setProducts] = useState([])
-const {ProductsBY} = useAuth()
-
+//const [products, setProducts] = useState([])
+const {ProductsBY,products} = useAuth()
+const {} = useSelector(state=>state.global)
+const dispatch = useDispatch()
 useEffect(() => {
 const analytics = getAnalytics();
 logEvent(analytics, "screen_view", {
@@ -21,10 +24,10 @@ logEvent(analytics, "screen_view", {
 
 useEffect(() => {
 
-ProductsBY('sold')
-// .then(res => {
-// console.log("🔰🔰🔰🔰", res)
-// })
+ProductsBY('createdAt')
+
+
+
 
 }, [])
 
@@ -49,7 +52,7 @@ ProductsBY('sold')
 >
 
 <div>
-  Hello world
+ {products?.length}
 </div>
 
 

@@ -34,7 +34,7 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { auth, db } from "../firebase";
 import { useDispatch } from "react-redux";
-import {  } from "../store/index";
+import {setProducts,     setName  } from "../store/index";
 import {toast} from 'react-toastify';
 const authContext = createContext();
 
@@ -46,7 +46,9 @@ const AuthContext = ({ children }) => {
   const [currentuser, setUser] = useState({});
   const [userinfo, setUserinfo] = useState({});
   const [groupid_upate, setGroupid_update] = useState("");
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+
 
   const signUp = async (email, password, name) => {
     await createUserWithEmailAndPassword(auth, email, password);
@@ -142,18 +144,20 @@ const AuthContext = ({ children }) => {
 
 
 
-
   const ProductsBY = async (orderby) => {
-    // startAt(startAtParam), endAt(endAtParam)
-
-
-
+ 
+  
+  
 
     onSnapshot(
       query(
         collection(db, "Pro3"),
-        orderBy( orderby, "desc"),
-        limit(12)
+      //  where("categoryid", "in", categories),
+       
+        //  where('name', '!=' , prod   ),
+        orderBy(orderby, "desc")
+        // ,
+        // limit(3),
         // startAt(startat)
       ),
       (snapshot) => {
@@ -162,12 +166,15 @@ const AuthContext = ({ children }) => {
           ...doc.data(),
         }));
 
-       // dispatch(fechBestsellers(productsArr));
-console.log("🔰🔰🔰🔰🔰🔰",productsArr);
+     //   dispatch(setProducts(productsArr));
+setProducts(productsArr);
+console.log("*️⃣🆗️*️⃣🆗️*️⃣🆗️",productsArr);
         return productsArr;
       }
     );
   };
+
+
 
 
 
@@ -217,6 +224,8 @@ console.log("🔰🔰🔰🔰🔰🔰",productsArr);
     logout,
     RealatedProducts,
     ProductsBY,
+    setProducts,
+    products
     //BestSellersProducts,
  
   
