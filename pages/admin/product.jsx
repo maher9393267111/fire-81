@@ -3,6 +3,8 @@ import { Button, Form, Input, InputNumber, Select } from "antd";
 import { toast } from "react-toastify";
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const { Option } = Select;
 //import AdminLayout from "../../components/admin/adminLayout";
@@ -40,6 +42,7 @@ import {
     updateDoc } from "firebase/firestore";
   import { db,app,storage } from "../../firebase";
   import {  useAuth } from "../../context/index";
+import { Router } from "next/router";
   
 
 
@@ -68,7 +71,7 @@ const validateMessages = {
 
 const Product = () => {
   //const {categories, subCategoies,products,categorysubs} = useSelector(state=>state.global);
-
+const router = useRouter();
   const [Cats, error] = useCollection(
     collection(getFirestore(app), 'Categories3'),
     {
@@ -185,7 +188,7 @@ const Product = () => {
       ],
       sold: 0,
       color: values.product.color,
-      createdAt: serverTimestamp(),
+   //   createdAt: serverTimestamp(),
       //description:values.product.description,
     };
 
@@ -195,7 +198,7 @@ const Product = () => {
   };
 
   return (
-    <div>
+    <div className="mx-auto w-[433px]">
       {/* <AdminLayout> */}
       <h1>Product</h1>
 
@@ -357,11 +360,15 @@ const Product = () => {
                             handleproductid(product.id);
                             setProductid(product?.id);
                             console.log("sub--->>>", productid);
+                      
                          //   setIsupdate(!isupdate);
                           }}
                           className=" w-[144px]"
                         >
-                          {product?.data().name}
+                         <p
+                        
+                         
+                         >{product?.data().name} </p> 
                           {/* {product?.id} */}
                         </p>
                         <p
@@ -380,7 +387,19 @@ const Product = () => {
                             src="https://cdn1.iconfinder.com/data/icons/smallicons-controls/32/614397-x-256.png"
                             alt=""
                           />
+
+
+
                         </p>
+
+                        <p
+ onClick={() => {
+    router.push(`/admin/${product?.id}`);
+
+ }}
+
+>edit</p>
+
                       </div>
                     </div>
                   );
