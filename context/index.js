@@ -142,7 +142,61 @@ const AuthContext = ({ children }) => {
 
 
 
-  
+
+  const ProductsBY = async (orderby) => {
+    // startAt(startAtParam), endAt(endAtParam)
+
+
+
+
+    onSnapshot(
+      query(
+        collection(db, "Pro3"),
+        orderBy( orderby, "desc"),
+        limit(12)
+        // startAt(startat)
+      ),
+      (snapshot) => {
+        const productsArr = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+       // dispatch(fechBestsellers(productsArr));
+console.log("🔰🔰🔰🔰🔰🔰",productsArr);
+        return productsArr;
+      }
+    );
+  };
+
+
+
+  const RealatedProducts = async (prod, subid) => {
+    //console.log("productid 🚀🚀🚀🚀🚀🚀",prod, '-------',);
+    //console.log("sUbi 🔴🔴" ,'-------',subid);
+    // startAt(startAtParam), endAt(endAtParam)
+
+    onSnapshot(
+      query(
+        collection(db, "Pro3"),
+      //  where("subid", "==", `${subid}`),
+        where("name", "!=", prod)
+        // orderBy("id", "desc")
+        // ,
+        // limit(3),
+        // startAt(startat)
+      ),
+      (snapshot) => {
+        const productsArr = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+      //  dispatch(relatedproductsfetch(productsArr));
+        return productsArr;
+      }
+    );
+  };
 
 
 
@@ -160,7 +214,10 @@ const AuthContext = ({ children }) => {
     userinfo,
     signUp,
     signIn,
-    logout
+    logout,
+    RealatedProducts,
+    ProductsBY,
+    //BestSellersProducts,
  
   
   };

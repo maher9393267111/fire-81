@@ -5,10 +5,11 @@ import { analytics } from '../firebase'
 import { useEffect,useState } from 'react'
 import { getAnalytics, logEvent } from "firebase/analytics"
 import Layout from '../components/layout'
+import { useAuth } from '../context'
 export default function Home({}) {
 
-
-
+const [products, setProducts] = useState([])
+const {ProductsBY} = useAuth()
 
 useEffect(() => {
 const analytics = getAnalytics();
@@ -16,6 +17,18 @@ logEvent(analytics, "screen_view", {
   firebase_screen: "Home",
 });
 }, []);
+
+
+useEffect(() => {
+
+ProductsBY('sold')
+// .then(res => {
+// console.log("🔰🔰🔰🔰", res)
+// })
+
+}, [])
+
+
 
 
 
