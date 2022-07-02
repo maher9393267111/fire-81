@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }) {
 
 <Context>
   <Navbar/>
+  <ToastContainer/>
 
 <Component {...pageProps} />
 </Context>

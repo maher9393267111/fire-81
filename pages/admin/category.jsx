@@ -14,7 +14,7 @@ import {
 } from "react-firebase-hooks/firestore";
 import { query, collection, orderBy,getFirestore } from "firebase/firestore";
 import { db,app } from "../../firebase";
-import { globaluse, useAuth } from "../../context/index";
+import {  useAuth } from "../../context/index";
 
 const Category = () => {
   const [isupdate, setIsupdate] = useState(false);
@@ -104,7 +104,7 @@ const [Cats, error] = useCollection(
                       }}
                       className=" w-[85px]"
                     >
-                      {category?.id}
+                  
                       {category.data().name}
                     </p>
                     <p

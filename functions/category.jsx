@@ -49,18 +49,17 @@ import { toast } from "react-toastify";
 // create a new category
 export const createCategory = async (category) => {
 
+try {
+
     console.log('category--->⚡⚡', category);
-    await addDoc(collection(db, "Categories3",), { name: category,createdAt:serverTimestamp() }).then(() => {
+    await addDoc(collection(db, "Categories3",), { name: category,createdAt:serverTimestamp() })
         toast.success("Category created successfully");
 
-    }
-    ).catch((error) => {
-        toast.error(error.message);
+    
+} catch (error) {
 
-
-    }
-    );
-
+    toast.error(error.message);
+}
 
 
 
@@ -163,7 +162,7 @@ export const deleteSubCategory = async (subid) => {
 export const createProduct = async (productdata) => {
 
     console.log('productdata--->⚡⚡',productdata);
-    await addDoc(collection(db, "Pro",), productdata).then(() => {
+    await addDoc(collection(db, "Pro3",), productdata).then(() => {
         toast.success("product created successfully");
 
     }
@@ -181,7 +180,7 @@ export const createProduct = async (productdata) => {
 export const updateproduct = async (productid, productdata) => {
     // console.log('Sub is--💬💬💬💬',subid);
     
-     const productDoc = doc(db, 'Pro',productid);
+     const productDoc = doc(db, 'Pro3',productid);
     
      await updateDoc(productDoc, productdata).then(() => {
          toast.success("product----> updated successfully");
@@ -201,17 +200,17 @@ export const updateproduct = async (productid, productdata) => {
 
 
  export const deleteproduct = async (productid) => {
-    console.log('productid---🚀🚀🚀🚀',productid);
+    console.log('productid---💡💡💡💡',productid);
    
-    const productpath = doc(db, "Pro", `${productid}`);
+    const productpath = doc(db, "Pro3", `${productid}`);
     const imagesdata = await (await getDoc(productpath)).data()?.images;
 
-console.log('imagesdata---🚀🚀🚀🚀',imagesdata);
+console.log('imagesdata--💡---💡--💡',imagesdata);
 
   // // delete images from storage
   if ( imagesdata && imagesdata?.length > 0) {
          imagesdata?.forEach((image) => {
-        const desertRef = ref(storage, `ecom/${image.name}`);
+        const desertRef = ref(storage, `ecom3/${image.name}`);
         deleteObject(desertRef)
             .then(() => {'Deleted! '})
             .catch((error) => {
@@ -224,7 +223,7 @@ console.log('imagesdata---🚀🚀🚀🚀',imagesdata);
 
 
 
-    const productDoc = doc(db, 'Pro',productid);
+    const productDoc = doc(db, 'Pro3',productid);
    
 	await  deleteDoc(productDoc).then(() => {
         toast.success("product deleted successfully");
