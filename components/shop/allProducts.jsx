@@ -5,11 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Card from '../cards/Card';
 import { setsearchmode } from '../../store/global';
+
 const AllProducts = () => {
 
 const dispatch = useDispatch();
-const {AllProducts ,searchedproducts,setSearchedproducts  } = useAuth();
+const {AllProducts ,searchedproducts,setSearchedproducts ,searchText } = useAuth();
 const [products, setProducts] = useState([]);
+//const [searchText, setSearchText] = useState('')
 const [limit, setLimit] = useState(2);
 //const [searcheProducts, setSearcheProducts] = useState([]);
 const {searchMode} = useSelector((state) => state.global);
@@ -61,7 +63,7 @@ className='  bg-blue-600  mx-4 rounded-full p-2 text-white font-bold'>ALL Produc
 
 <div className='my-12 text-center text-2xl font-bold'>
 
-
+{searchText}
 
 
  {searchMode ?  (<div><h1>Filtered Products</h1></div>) : <div><h1>All Products</h1></div>  } 
@@ -87,13 +89,11 @@ className='  bg-blue-600  mx-4 rounded-full p-2 text-white font-bold'>ALL Produc
 
 <div className=' grid sm:grid-cols-2 lg:grid-cols-3'>
 
-{products.map((product) => (
-
-<div className='my-6 mx-6' key={product.id}>
-<Card product={product} />
-</div>
-
-))}
+{products
+           
+            .map((product) => (
+              <Card key={product.id} product={product} />
+            ))}
 
 </div>
 

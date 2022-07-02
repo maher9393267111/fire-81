@@ -48,6 +48,8 @@ const AuthContext = ({ children }) => {
   const [groupid_upate, setGroupid_update] = useState("");
   const [productsNew, setProductsNew] = useState([]);
   const [searchedproducts, setSearchedproducts] = useState([]);
+  const [products, setAllProducts] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
 
 
@@ -235,8 +237,9 @@ const AllProducts= (pro) => {
         data.push({ ...doc.data(),id: doc.id  })
       
     });
-  //  setProductsNew(data);
-//console.log("AllProducts",data);
+
+    setAllProducts(data);
+
     return  data;
   });
 }
@@ -315,6 +318,39 @@ console.log("---->💠💠💠",searchedproducts);
 
 
 
+useEffect(() => {
+
+  AllProducts()
+}, [searchedproducts]);
+
+
+
+
+
+const SearchbyText = async (text) => {
+
+  console.log("sub id is--- 🔴🔴🚀🚀🚀🚀🚀🚀", "-------", text);
+  // startAt(startAtParam), endAt(endAtParam)
+
+  // search with text  regexp
+
+  const regex = new RegExp(text, "i");
+
+
+
+
+const filterproducts = products.filter((product) => {
+return product.name.match(regex);
+});
+
+console.log("filter🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥", filterproducts);
+setSearchedproducts(filterproducts);
+
+//dispatch(fetchsearchedproducts(filterproducts));
+
+
+
+};
 
 
 
@@ -339,6 +375,12 @@ console.log("---->💠💠💠",searchedproducts);
     searchedproducts,
     setSearchedproducts,
     ProductsByPrice,
+    SearchbyText,
+    setAllProducts,
+    products,
+    setSearchText,
+    searchText,
+    SearchbyText
    
  
   

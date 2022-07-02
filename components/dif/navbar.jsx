@@ -4,6 +4,7 @@ import { useAuth } from "../../context";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ console.log("router.pathname is--->", router.pathname);
   };
 
   return (
-    <div className=" h-[82px] bg-blue-600">
+    <div className=" h-[82px] bg-blue-600 flex justify-between">
 
         <ul className="   text-white text-md  font-bold flex  gap-12 relative top-[28px] left-[57px]">
          
@@ -124,6 +125,16 @@ console.log("router.pathname is--->", router.pathname);
         </ul>
     
 
+{/* --------search bar---------- */}
+
+<div className=" mr-24">
+
+<div>
+<SearchBar/>
+</div>
+
+
+</div>
 
 
    
