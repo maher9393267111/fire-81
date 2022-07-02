@@ -221,8 +221,9 @@ console.log("categories",data);
 
 
 
-const AllProducts= () => {
-  return getDocs(query(collection(db, "Pro3"),limit(3),    
+const AllProducts= (pro) => {
+  console.log("💡💡💡💡",pro);
+  return getDocs(query(collection(db, "Pro3"),limit(pro),    
   //orderBy('orderby', "desc")
   )).then((querySnapshot) => {
 

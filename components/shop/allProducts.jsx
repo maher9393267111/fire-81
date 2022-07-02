@@ -10,17 +10,19 @@ const AllProducts = () => {
 const dispatch = useDispatch();
 const {AllProducts ,searchedproducts,setSearchedproducts  } = useAuth();
 const [products, setProducts] = useState([]);
+const [limit, setLimit] = useState(2);
 //const [searcheProducts, setSearcheProducts] = useState([]);
 const {searchMode} = useSelector((state) => state.global);
 
 useEffect(() => {
 
-AllProducts().then(res => {
+AllProducts(limit).then(res => {
     setProducts(res);
+    console.log('✖✖✖✖  Refetching');
 })
 
 
-}, [searchMode])
+}, [searchMode,limit])
 
 
 // exit search mode
@@ -32,6 +34,16 @@ const exitSearchMode = () => {
 
 }
 
+
+
+// show more products
+
+const showMore = () => {
+
+setLimit(limit + 2);
+console.log("limit",limit);
+
+}
 
 
 
@@ -77,13 +89,28 @@ className='  bg-blue-600  mx-4 rounded-full p-2 text-white font-bold'>ALL Produc
 
 {products.map((product) => (
 
-<div key={product.id}>
+<div className='my-6 mx-6' key={product.id}>
 <Card product={product} />
 </div>
 
 ))}
 
 </div>
+
+
+<div className='my-12'>
+
+<div>
+    <h1 className='text-center'>
+        <button
+        
+        onClick={showMore}
+        className='rounded-full bg-black text-white font-bold text-center p-2 w-[200px]'>Show More</button>
+    </h1>
+</div>
+
+</div>
+
 
 
 </div>
@@ -111,7 +138,7 @@ className='  bg-blue-600  mx-4 rounded-full p-2 text-white font-bold'>ALL Produc
     
 {searchedproducts.map((product) => (
 
-<div key={product.id}>
+<div className='my-6 mx-6' key={product.id}>
 <Card product={product} />
 </div>
 
