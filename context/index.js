@@ -220,6 +220,29 @@ console.log("categories",data);
 
 
 
+const AllProducts= () => {
+  return getDocs(query(collection(db, "Pro3"),    
+  //orderBy('orderby', "desc")
+  )).then((querySnapshot) => {
+
+    var data = [];
+    querySnapshot.forEach((doc) => {
+   
+       // console.log("cats is exist");
+        
+        data.push({ ...doc.data(),id: doc.id  })
+      
+    });
+  //  setProductsNew(data);
+//console.log("AllProducts",data);
+    return  data;
+  });
+}
+
+
+
+
+
 
 
 const ProductsBySelectedCategories = async (categories) => {
@@ -245,7 +268,7 @@ const ProductsBySelectedCategories = async (categories) => {
         
       }));
 
-     // dispatch//(fetchsearchedproducts(productsArr));
+   //   dispatch(fetchsearchedproducts(productsArr));
 console.log("Products issssssssss---->",productsArr);
       return productsArr;
     }
@@ -272,7 +295,8 @@ console.log("Products issssssssss---->",productsArr);
     setProductsNew,
     productsNew,
     Categories,
-    ProductsBySelectedCategories
+    ProductsBySelectedCategories,
+    AllProducts
    
  
   

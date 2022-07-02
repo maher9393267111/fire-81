@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 const AllProducts = () => {
 
 
-const {   } = useAuth();
+const {AllProducts   } = useAuth();
 const [products, setProducts] = useState([]);
 
 useEffect(() => {
 
-
+AllProducts().then(res => {
+    setProducts(res);
+})
 
 
 }, [])
@@ -19,7 +21,7 @@ useEffect(() => {
     return (
         <div>
             <h1>
-                all products
+                all products  {products.length}
             </h1>
         </div>
     );
