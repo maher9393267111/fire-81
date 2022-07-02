@@ -60,16 +60,17 @@ const AuthContext = ({ children }) => {
         "https://cdn4.iconfinder.com/data/icons/office-thick-outline/36/office-14-256.png",
     });
 
-    await setDoc(doc(db, "Users", auth.currentUser.email), {
+    await setDoc(doc(db, "usmaher", auth.currentUser.email), {
       watchList: [],
       name: auth.currentUser.displayName,
       role: "user",
       image: auth.currentUser.photoURL,
       email: auth.currentUser.email,
       password: password,
+      history: [],
 
       cart: [],
-      rezerv: [],
+    
       totalprice: 0,
     });
   };
@@ -95,7 +96,7 @@ const AuthContext = ({ children }) => {
 
     // add the user to the users collection
 
-    await setDoc(doc(db, "Users", auth.currentUser.email), {
+    await setDoc(doc(db, "usmaher", auth.currentUser.email), {
       watchList: [],
       name: auth.currentUser.displayName,
       role: "user",
@@ -126,7 +127,7 @@ const AuthContext = ({ children }) => {
         setUser(user);
 
         const fetchuser = async () => {
-          const userinfo = await getDoc(doc(db, "Users", user.email));
+          const userinfo = await getDoc(doc(db, "usmaher", user.email));
           setUserinfo({ id: userinfo.id, ...userinfo.data() });
         };
 
@@ -155,7 +156,11 @@ const AuthContext = ({ children }) => {
 
   const value = {
   
-
+    currentuser,
+    userinfo,
+    signUp,
+    signIn,
+    logout
  
   
   };
