@@ -3,7 +3,7 @@ import { useAuth } from "../../context/index";
 import { auth, db } from "../../firebase";
 import Link from "next/link";
 import {useState, useEffect} from 'react'
-
+import Layout from '../../components/layout'
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
@@ -45,6 +45,15 @@ const router = useRouter();
   };
 
   return (
+
+<Layout
+    title="Login Page"
+    description="Node React E-commerce App"
+
+>
+
+
+
     <div className=" w-[400px] mx-auto mt-24">
       <div>
         <h1
@@ -119,7 +128,9 @@ const router = useRouter();
         </Form.Item>
       </Form>
     </div>
+    </Layout>
   );
+
 };
 
 export default Login;

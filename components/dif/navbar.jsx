@@ -1,4 +1,5 @@
 import React from "react";
+import { Fragment } from "react";
 import { useAuth } from "../../context";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -8,7 +9,7 @@ const Navbar = () => {
   const router = useRouter();
   console.log("💯💯💯", router.pathname);
   const [active, setActive] = useState('');
-
+const {userinfo,logout}  = useAuth();
   // check current url path
   const checkPath = (path) => {
     console.log("path is--->", path);
@@ -23,33 +24,109 @@ console.log("router.pathname is--->", router.pathname);
   };
 
   return (
-    <div>
-      <div>
-        <ul className="nav nav-tabs bg-primary">
-          <li className="nav-item">
-            <Link  href="/"><a
-             className={`${active === '/' ? '  text-red-500' : "text-blue-500 "}  nav-link`}
+    <div className=" h-[82px] bg-blue-600">
+
+        <ul className="   text-white text-md  font-bold flex  gap-12 relative top-[28px] left-[57px]">
+         
+        <li className="nav-item">
+            <Link href="/"><a
+             className={`${active == '/' ? '  text-red-500' : "text-white  "}  nav-link`}
               onClick={() => {checkPath('/') }}
               >Home</a>
             
             </Link>
           </li>
 
-
+            
           <li className="nav-item">
-            <Link href="/auth/login"><a
-             className={`${active == '/auth/login' ? '  text-red-500' : "text-blue-500 "}  nav-link`}
-              onClick={() => {checkPath('/auth/login') }}
-              >Register</a>
+            <Link href="/shop"><a
+             className={`${active == '/shop' ? '  text-red-500' : "text-white "}  nav-link`}
+              onClick={() => {checkPath('/shop') }}
+              >Shop</a>
             
             </Link>
           </li>
 
-<p className=" bg-green-300">sa</p>
+      
+          <li className="nav-item">
+            <Link href="/cart"><a
+             className={`${active == '/cart' ? '  text-red-500' : "text-white  "}  nav-link`}
+              onClick={() => {checkPath('/cart') }}
+              >Cart</a>
+            
+            </Link>
+          </li>
+
+            {userinfo && userinfo?.role === 'user'  && (
+                
+              <li className="nav-item">
+              <Link href="/user/dashboard"><a
+               className={`${active == '/user/dashboard' ? '  text-red-500' : "text-white  "}  nav-link`}
+                onClick={() => {checkPath('/user/dashboard') }}
+                >User Dashboard</a>
+              
+              </Link>
+            </li>
+            )}
+
+            {userinfo&& userinfo?.role === 'admin' && (
+              
+              <li className="nav-item">
+            <Link href="/admin/dashboard"><a
+             className={`${active == '/admin/dashboard' ? '  text-red-500' : "text-white  "}  nav-link`}
+              onClick={() => {checkPath('/admin/dashboard') }}
+              >Admin Dashboard</a>
+            
+            </Link>
+          </li>
+            )}
+
+            {!userinfo?.name && (
+                <Fragment>
+                  
+                  <li className="nav-item">
+            <Link href="/auth/login"><a
+             className={`${active == '/auth/login' ? '  text-red-500' : "text-white "}  nav-link`}
+              onClick={() => {checkPath('/auth/login') }}
+              >Login</a>
+            
+            </Link>
+          </li>
 
 
+
+          <li className="nav-item">
+            <Link href="/auth/signup"><a
+             className={`${active == '/auth/signup' ? '  text-red-500' : "text-white  "}  nav-link`}
+              onClick={() => {checkPath('/auth/signup') }}
+              >Register</a>
+            
+            </Link>
+          </li>
+                </Fragment>
+            )}
+
+            {userinfo?.name && (
+                <li className="nav-item">
+                    <span
+                        className="nav-link"
+                        style={{ cursor: "pointer", color: "#ffffff" }}
+                        onClick={() =>
+                            logout(() => {
+                                router.push("/auth/login");
+                            })
+                        }
+                    >
+                        Signout
+                    </span>
+                </li>
+            )}
         </ul>
-      </div>
+    
+
+
+
+   
     </div>
   );
 };

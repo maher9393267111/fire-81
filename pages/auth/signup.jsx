@@ -2,6 +2,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import  {useAuth} from '../../context/index';
 import {auth,db} from "../../firebase";
 import Link from "next/link";
+import Layout from '../../components/layout'
 
 import {useEffect} from "react";
 import { useRouter } from 'next/router'
@@ -67,6 +68,12 @@ signUp(email, password, username);
 
   return (
 
+
+    <Layout
+    title="Register Page"
+    description="Node React E-commerce App"
+
+>
 
 <div className=' w-[400px] mx-auto mt-24'>
 
@@ -157,6 +164,7 @@ signUp(email, password, username);
       </Form.Item>
     </Form>
     </div>
+    </Layout>
   );
 };
 

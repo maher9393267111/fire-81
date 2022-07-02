@@ -85,3 +85,19 @@
               </span>
             </li>
           )}
+
+
+
+
+
+          -------------------------------------------------------
+
+
+              <li className="nav-item">
+            <Link href="/auth/login"><a
+             className={`${active == '/auth/login' ? '  text-red-500' : "text-blue-500 "}  nav-link`}
+              onClick={() => {checkPath('/auth/login') }}
+              >Register</a>
+            
+            </Link>
+          </li>
