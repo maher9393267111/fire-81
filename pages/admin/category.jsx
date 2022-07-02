@@ -36,7 +36,7 @@ const Category = () => {
 const [Cats, error] = useCollection(
   collection(getFirestore(app), 'Categories3'),
   {
-    snapshotListenOptions: { includeMetadataChanges: true },
+    snapshotListenOptions: { includeMetadataChanges: true,idField: 'id'},
   }
 );
 
@@ -104,6 +104,7 @@ const [Cats, error] = useCollection(
                       }}
                       className=" w-[85px]"
                     >
+                      {category?.id}
                       {category.data().name}
                     </p>
                     <p
