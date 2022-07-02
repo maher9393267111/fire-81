@@ -8,6 +8,7 @@ import Layout from '../components/layout'
 import { useAuth } from '../context'
 import {useSelector,useDispatch} from 'react-redux'
 import {setProducts,setName} from '../store/global'
+import Card from '../components/cards/Card'
 export default function Home({}) {
 
 const [newproducts, setNewProducts] = useState([])
@@ -63,6 +64,100 @@ useEffect(() => {
 >
 
 <div>
+
+
+{/* -----best seller products------ */}
+
+<div className=' mt-14 mb=12'>
+
+<div>
+
+{/* ---header---- */}
+<div>
+
+  <h1 className=' text-2xl font-bold text-center'>Best Seller Products</h1>
+</div>
+
+<div>
+
+<div>
+
+{bestSellerProducts.map((product,index)=>{
+
+return (
+
+<div className='' key={product.id}>
+<Card product={product} />
+</div>
+
+)})}
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+{/* -------new products------ */}
+<div>
+
+
+<div>
+
+
+{/* -header--- */}
+
+<div>
+
+<h1>New Products</h1>
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
 
 </div>
 
