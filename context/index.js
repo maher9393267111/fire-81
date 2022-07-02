@@ -199,6 +199,62 @@ const AuthContext = ({ children }) => {
 
 
 
+const Categories= () => {
+  return getDocs(query(collection(db, "Categories3"),    
+  //orderBy('orderby', "desc")
+  )).then((querySnapshot) => {
+
+    var data = [];
+    querySnapshot.forEach((doc) => {
+   
+        console.log("cats is exist");
+        
+        data.push({ ...doc.data(),id: doc.id  })
+      
+    });
+  //  setProductsNew(data);
+console.log("categories",data);
+    return  data;
+  });
+}
+
+
+
+
+
+const ProductsBySelectedCategories = async (categories) => {
+ 
+  console.log(" price data is is--- 🔴🔴", "-------", categories);
+
+
+  onSnapshot(
+    query(
+      collection(db, "Pro3"),
+      where("categoryid", "in", categories),
+     
+      //  where('name', '!=' , prod   ),
+      // orderBy("id", "desc")
+      // ,
+      // limit(3),
+      // startAt(startat)
+    ),
+    (snapshot) => {
+      const productsArr = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+        
+      }));
+
+     // dispatch//(fetchsearchedproducts(productsArr));
+console.log("Products issssssssss---->",productsArr);
+      return productsArr;
+    }
+  );
+};
+
+
+
+
 
 
 
@@ -214,8 +270,10 @@ const AuthContext = ({ children }) => {
     RealatedProducts,
     ProductsBY,
     setProductsNew,
-    productsNew
-    //BestSellersProducts,
+    productsNew,
+    Categories,
+    ProductsBySelectedCategories
+   
  
   
   };
