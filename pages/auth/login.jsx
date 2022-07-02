@@ -7,23 +7,24 @@ import Layout from '../../components/layout'
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
+import { redirect } from "next/dist/server/api-utils";
 const Login = () => {
   const { currentUser, userinfo, signIn } = useAuth();
 
 const router = useRouter();
 
-// useEffect(() => {
-//   //console.log("🔴🔴🔴🔴", );
+useEffect(() => {
+  //console.log("🔴🔴🔴🔴", );
 
-// if (userinfo.role === "admin") {
-//   router.push("/admin/dashboard");
-// }
-// if (userinfo.role === "user") {
-//   router.push("/");
-// }
+if (userinfo.role === "admin") {
+  router.push("/admin/dashboard");
+}
+if (userinfo.role === "user") {
+  router.push("/");
+}
 
 
-// }, [userinfo.role]);
+}, [userinfo.role]);
 
 
 
@@ -41,7 +42,13 @@ const router = useRouter();
 
     const { email, password, username } = values;
 
-    await signIn(email, password);
+    await signIn(email, password).then(() => {
+
+router.push("/");
+
+    })
+     
+
   };
 
   return (

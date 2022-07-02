@@ -56,6 +56,8 @@ signUp(email, password, username);
 
   
    
+// redirect to dashboard
+ router.push("/");
    
 
 
