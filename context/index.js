@@ -47,6 +47,7 @@ const AuthContext = ({ children }) => {
   const [userinfo, setUserinfo] = useState({});
   const [groupid_upate, setGroupid_update] = useState("");
   const [productsNew, setProductsNew] = useState([]);
+  const [searchedproducts, setSearchedproducts] = useState([]);
   const dispatch = useDispatch();
 
 
@@ -247,7 +248,7 @@ const AllProducts= () => {
 
 const ProductsBySelectedCategories = async (categories) => {
  
-  console.log(" price data is is--- 🔴🔴", "-------", categories);
+ // console.log(" price data is is--- 🔴🔴", "-------", categories);
 
 
   onSnapshot(
@@ -269,7 +270,9 @@ const ProductsBySelectedCategories = async (categories) => {
       }));
 
    //   dispatch(fetchsearchedproducts(productsArr));
-console.log("Products issssssssss---->",productsArr);
+//console.log("Products issssssssss---->",productsArr);
+setSearchedproducts(productsArr);
+console.log("---->💠💠💠",searchedproducts);
       return productsArr;
     }
   );
@@ -296,7 +299,9 @@ console.log("Products issssssssss---->",productsArr);
     productsNew,
     Categories,
     ProductsBySelectedCategories,
-    AllProducts
+    AllProducts,
+    searchedproducts,
+    setSearchedproducts,
    
  
   

@@ -63,7 +63,7 @@ const handleCheck = (e) => {
       // if found pull out one item from index
       inTheState.splice(foundInTheState, 1);
     }
-    console.log('🔷️-🔷️-🔷️-🔷️',inTheState);
+  //  console.log('🔷️-🔷️-🔷️-🔷️',inTheState);
 
     setCategoryIds(inTheState);
 
