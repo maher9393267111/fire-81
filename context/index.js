@@ -47,6 +47,7 @@ const AuthContext = ({ children }) => {
   const [userinfo, setUserinfo] = useState({});
   const [groupid_upate, setGroupid_update] = useState("");
   const [productsNew, setProductsNew] = useState([]);
+  const [related, setRelated] = useState([]);
   const [searchedproducts, setSearchedproducts] = useState([]);
   const [products, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -147,28 +148,74 @@ const AuthContext = ({ children }) => {
 
 
 
-  const RealatedProducts = async (prod,catid) => {
-    
-    
-    const q = query(collection(db, "Pro3"), where("categoryid", "==", catid), where("name", "!=", prod));
-    const unsub = onSnapshot(q, (QuerySnapshot) => {
-      let postsArray = [];
-      QuerySnapshot.forEach((doc) => {
-        postsArray.push({ ...doc.data(), id: doc.id });
-      });
-      console.log("from vivek", postsArray);
-      dispatch(setProducts(postsArray));
-     // setTodos(postsArray);
-    });
 
-    return unsub;
-    // const data = await getDocs(userCollectionRef);
-    // setTodos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+
+  const RealatedProducts2 = async (prod, subid) => {
+    //console.log("productid 🚀🚀🚀🚀🚀🚀",prod, '-------',);
+    //console.log("sUbi 🔴🔴" ,'-------',subid);
+    // startAt(startAtParam), endAt(endAtParam)
+
+    onSnapshot(
+      query(
+        collection(db, "Pro3"),
+        where("categoryid", "==", `${subid}`),
+        where("name", "!=", prod)
+        // orderBy("id", "desc")
+        // ,
+        // limit(3),
+        // startAt(startat)
+      ),
+      (snapshot) => {
+        const productsArr = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+console.log("⏺⏺⏺⏺⏺",productsArr);
+       // dispatch((setProducts(productsArr)));
+
+        return productsArr;
+      }
+    );
   };
 
 
-
   
+  const RealatedProducts = async (prod, subid) => {
+ 
+    // console.log(" price data is is--- 🔴🔴", "-------", categories);
+   
+   
+     onSnapshot(
+       query(
+         collection(db, "Pro3"),
+         where("categoryid", "==", `${subid}`),
+         where("name", "!=", prod)
+        
+         //  where('name', '!=' , prod   ),
+         // orderBy("id", "desc")
+         // ,
+         // limit(3),
+         // startAt(startat)
+       ),
+       (snapshot) => {
+         const productsArr = snapshot.docs.map((doc) => ({
+           id: doc.id,
+           ...doc.data(),
+           
+         }));
+   
+      //   dispatch(fetchsearchedproducts(productsArr));
+   //console.log("Products issssssssss---->",productsArr);
+   //(productsArr);
+   console.log("---->💠💠💠",productsArr);
+   setRelated(productsArr);
+         return productsArr;
+       }
+     );
+   };
+   
+
 
 
 
@@ -377,6 +424,8 @@ setSearchedproducts(filterproducts);
     searchText,
     SearchbyText,
     RealatedProducts,
+    setRelated,
+    related,
    
  
   

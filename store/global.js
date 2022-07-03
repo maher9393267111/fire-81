@@ -13,15 +13,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        isLoggedIn: false,
-        isAuthLoading: false,
-        user: {},
+      
         name:'maher',
       
-        groupusers: [],
-        groupPosts: [],
-        postId: '',
-        userGroups: [],
         products: [],
         searchMode: false,
     
