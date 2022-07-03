@@ -221,7 +221,7 @@ setCartinfo(obj);
       const cart = await (await getDoc(userpath)).data()?.cart;
       const totalprice = await (await getDoc(userpath)).data()?.totalprice;
 
-      dispatch(setCart({ cart: cart, total: totalprice }));
+    //  dispatch(setCart({ cart: cart, total: totalprice }));
       // update totla price
 
       setCartexecute(!cartexecute);
@@ -265,7 +265,7 @@ setCartinfo(obj);
       const cart = await (await getDoc(userpath)).data()?.cart;
       const totalprice = await (await getDoc(userpath)).data()?.totalprice;
 
-      dispatch(setCart({ cart: cart, total: totalprice }));
+     // dispatch(setCart({ cart: cart, total: totalprice }));
       // update totla price
 
       setCartexecute(!cartexecute);
