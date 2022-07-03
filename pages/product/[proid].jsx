@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { doc, getDoc } from "firebase/firestore";
 import safeJsonStringify from "safe-json-stringify";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout";
 import { db } from "../../firebase";
 import Card from "../../components/cards/Card";
 import RelatedProducts from "../../components/SingleProduct/relatedProducts";
