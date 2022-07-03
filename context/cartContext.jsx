@@ -323,3 +323,4 @@ setCartinfo(obj);
 };
 
 export default allContext;
+
