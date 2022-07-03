@@ -1,9 +1,11 @@
 import React from 'react';
 import { Card } from "antd";
 import {Rate} from "antd";
+import {useEffect,useState} from 'react';
 import {Cart}  from "../../context/cartContext"
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import  Link  from "next/link";
+
 
 const { Meta } = Card;
 const CardComponent = ({product ,show=false,category ,relate=false}) => {
@@ -12,14 +14,16 @@ const CardComponent = ({product ,show=false,category ,relate=false}) => {
 
 
 // add to cart single time
-const {addtocart} = Cart();
+const {addtocart,cartdata,cartinfo } = Cart();
+
 
 
 
 
     return (
         <div>
-           
+       
+       
            <>
            <div>
      <div className={ ` ${!show ? 'w-[600px] mx-auto h-auto pb-20' : 'lg:h-[477px] sm:h-[366px] '}  rounded   overflow-hidden shadow-lg`}>
@@ -78,10 +82,17 @@ const {addtocart} = Cart();
     className={ ` ${ show ? '' : 'inline-block '} w-10 h-10  object-contain cursor-pointer rounded-b-full`} src="https://cdn2.iconfinder.com/data/icons/commerce-shadow/100/.svg-3-256.png"/>
 
 <p
-  
+      onClick={()=>addtocart(product)}
 
 className={` ${show ? 'text-[12px]' : "text-[18px] font-bold "} cursor-pointer `}>Add to cart</p>
 </div>
+
+{/* //-------------- */}
+
+{/* {cartinfo.cart?.filter((item)=>item.id===id).length>0?  (<p className="  text-red-600 font-bold">Remove it</p>)  : (<p className="   text-blue-700 font-bold">Add to Cart</p>) } */}
+
+
+{/* //------------ */}
 
 {show && (
 

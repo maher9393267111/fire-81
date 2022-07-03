@@ -43,10 +43,12 @@ const allContext = ({ children }) => {
   const [visible, setVisible] = useState(false);
   const [totalprice, setTotalprice] = useState(0);
   const [cartexecute, setCartexecute] = useState(false);
+  const [cartinfo, setCartinfo] = useState([]);
 
   // add product to current user cart
 
   const addtocart = async (product) => {
+    console.log("📌📌📌📌");
     setCartexecute(!cartexecute);
     // console.log("product", product.id);
 
@@ -59,10 +61,10 @@ const allContext = ({ children }) => {
         // indexof is used to check if the item is already in the cart
         item.id === product.id
     );
-    //console.log("exist", exist);
+    console.log("exist", exist);
 
     if (exist?.length === 0 || exist === []) {
-      //  console.log("product is notexist in cart add it", exist);
+        console.log("product is notexist in cart add it", exist);
 
       // console.log(checexist);
 
@@ -75,7 +77,6 @@ const allContext = ({ children }) => {
         price: product.price,
         image: product.images[0].image,
       };
-
       await updateDoc(userpath, {
         cart: arrayUnion(productdata), // ArrayUnion is used to add the product to the cart
         //[...cart, product],
@@ -85,6 +86,7 @@ const allContext = ({ children }) => {
         ),
       }).then(async () => {
         const cart = await (await getDoc(userpath)).data()?.cart;
+        console.log("✔✔✔✔✔✔✔✔✔");
         toast.success("Product added to cart");
         await updateDoc(userpath, {
           totalprice: cart?.reduce(
@@ -141,6 +143,7 @@ const allContext = ({ children }) => {
 
       // total price of the cart
 toast.warning("Product removed from cart");
+console.log("✖✖✖✖✖✖✖✖✖");
 
       const cartafterdelete = await (await getDoc(userpath)).data()?.cart;
       const totalpricedafterfelete = await (await getDoc(userpath)).data()
@@ -158,6 +161,7 @@ toast.warning("Product removed from cart");
 
   useEffect(() => {
     cartdata();
+    console.log("cartdata👁👁 👁👁👁👁");
   }, []);
 
   const cartdata = async () => {
@@ -167,6 +171,8 @@ toast.warning("Product removed from cart");
     const totalprice = await (await getDoc(userpath)).data()?.totalprice;
 
     const obj = { cart: cart, total: totalprice };
+
+setCartinfo(obj);
 
     return obj;
   };
@@ -310,6 +316,8 @@ toast.warning("Product removed from cart");
     increasequantity,
     Decreasequantity,
     deleteProduct,
+    setCartinfo,
+    cartinfo
   };
   return <cartContext.Provider {...{ value }}>{children}</cartContext.Provider>;
 };
