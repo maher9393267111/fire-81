@@ -1,13 +1,21 @@
 import React from 'react';
 import { Card } from "antd";
 import {Rate} from "antd";
+import {Cart}  from "../../context/cartContext"
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import  Link  from "next/link";
 
 const { Meta } = Card;
-const CardComponent = ({product ,show=false,category}) => {
+const CardComponent = ({product ,show=false,category ,relate=false}) => {
 
     const { images, name, desc, id } = product;
+
+
+// add to cart single time
+const {addtocart} = Cart();
+
+
+
 
     return (
         <div>
@@ -36,7 +44,7 @@ const CardComponent = ({product ,show=false,category}) => {
         { desc &&  desc?.slice(0,40)}
     </p> */}
    </div>
-  <div className={ ` px-6  ${!show ? 'w-full' : 'md:w-[252px]'}   pb-2`}>
+  <div className={ ` px-6  ${!show ? 'w-full' : ''}   pb-2`}>
 
 <div className=" text-center">
     <p className=" font-bold">{product.price}$</p>
@@ -64,9 +72,15 @@ const CardComponent = ({product ,show=false,category}) => {
 <div className={ `  ${show ? 'flex' : "text-center "}  ml-4   justify-between gap-4`}>
 
 <div>
-    <img className={ ` ${ show ? '' : 'inline-block '} w-10 h-10  object-contain rounded-b-full`} src="https://cdn2.iconfinder.com/data/icons/commerce-shadow/100/.svg-3-256.png"/>
+    <img
+    
+    onClick={()=>addtocart(product)}
+    className={ ` ${ show ? '' : 'inline-block '} w-10 h-10  object-contain cursor-pointer rounded-b-full`} src="https://cdn2.iconfinder.com/data/icons/commerce-shadow/100/.svg-3-256.png"/>
 
-<p className={` ${show ? 'text-[12px]' : "text-[18px] font-bold "} `}>Add to cart</p>
+<p
+  
+
+className={` ${show ? 'text-[12px]' : "text-[18px] font-bold "} cursor-pointer `}>Add to cart</p>
 </div>
 
 {show && (

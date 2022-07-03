@@ -24,16 +24,16 @@ useEffect(()=>{
 <div>
     
 
-<div>
+<div className=' grid sm:grid-cols-1 lg:grid-cols-2'>
 
 
 { related?.length > 0 && related?.map(product=>{
 
 return  (
 
-    <div>
+    <div key={product.id} className='w-[400px]'>
         <h1>{product?.name}</h1>
-    <Card product={product} show={true} key={product.id} />
+    <Card product={product} relate={true} show={true} key={product.id} />
     </div>
 )})}
 
