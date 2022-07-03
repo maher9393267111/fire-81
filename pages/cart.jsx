@@ -36,12 +36,12 @@ const CartPage = () => {
                   <div key={item.id}>
                     {/* content-- */}
 
-                    <div className=" min-h-[444px]  w-2/3  shadow-2xl my-8 mx-6  border-2  ">
+                    <div className=" min-h-[444px]  xs:w-full  md:w-2/3 shadow-2xl my-8 mx-6  border-2  ">
                       {/* ---image-- */}
 
                       <div className=" w-full h-[78%]">
                         <img
-                          className="w-full h-[300px] sm:object-cover  md:object-contain"
+                          className="w-full h-[300px] xs:object-contain sm:object-contain xs:w-full "
                           src={item.image}
                           alt=""
                         />
@@ -73,7 +73,7 @@ const CartPage = () => {
                                   <button
                                     type="submit"
                                     onClick={() => deleteProduct(item.id)}
-                                    className=" text-center bg-red-500 rounded-full text-white p-2 -mt-6 mr-4"
+                                    className=" text-center bg-red-500 rounded-full text-white p-2  xs:mr-12 md:mr-2 -mt-6 mr-4"
                                   >
                                     Remove From Cart
                                   </button>
