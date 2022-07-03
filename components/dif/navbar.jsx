@@ -151,10 +151,10 @@ const [userdata] = useDocumentData(doc(db, "usmaher", `${userinfo?.email}`));
 
 
   <p>
-
-  <div className=" ">
+<Link href="/cart"><div className=" relative">
   <span className="    bg-blue-400  rounded-full text-center w-8 h-8 absolute"><p className=" -mt-[5px] relative top-[8px] font-bold text-white">{userdata?.cart?.length}</p></span>
 </div>
+</Link>
   </p>
 </div>
 
