@@ -5,10 +5,11 @@ import safeJsonStringify from "safe-json-stringify";
 import Layout from "../../components/Layout";
 import { db } from "../../firebase";
 import Card from "../../components/cards/Card";
+import RelatedProducts from "../../components/SingleProduct/relatedProducts";
 const Proid = ({ product, category }) => {
   const router = useRouter();
 
-  console.log("🔻🔻🔻🔻", category);
+ // console.log("🔻🔻🔻🔻", category);
   const { images } = product;
 
   const { proid } = router.query;
@@ -17,12 +18,28 @@ const Proid = ({ product, category }) => {
     <div>
       <Layout title={"Single Product Page"}>
         <div>
-          {category?.name}
+          
           <div>
             {/* ---prouct side--- */}
             <div className=" my-20">
-              <Card product={product} show={false} key={product.id} />
+              <Card category={category} product={product} show={false} key={product.id} />
             </div>
+
+<div className=" mt-16">
+
+<div>
+
+  <RelatedProducts product={product} categoryid={category.id} />
+</div>
+
+
+
+</div>
+
+
+
+
+
           </div>
         </div>
       </Layout>

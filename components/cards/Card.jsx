@@ -5,7 +5,7 @@ import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import  Link  from "next/link";
 
 const { Meta } = Card;
-const CardComponent = ({product ,show=false}) => {
+const CardComponent = ({product ,show=false,category}) => {
 
     const { images, name, desc, id } = product;
 
@@ -14,11 +14,14 @@ const CardComponent = ({product ,show=false}) => {
            
            <>
            <div>
-     <div className={ ` ${!show ? 'w-[600px] mx-auto' : ''}  rounded sm:h-[366px]  lg:h-[477px] overflow-hidden shadow-lg`}>
+     <div className={ ` ${!show ? 'w-[600px] mx-auto h-auto pb-20' : 'lg:h-[477px] sm:h-[366px] '}  rounded   overflow-hidden shadow-lg`}>
 
-
+{ images?.length > 0  &&
 
    <img  className="w-full lg:h-[200px] sm:h-[130px] object-contain" src={images[0]?.image} alt="Sunset in the mountains"/>
+}
+
+
    <div className="px-6 py-4">
      <div className="font-bold text-xl ">
         
@@ -47,6 +50,12 @@ const CardComponent = ({product ,show=false}) => {
   </h1>
 </div>
 
+
+{/* in single product page */}
+
+{!show && (<div className='flex justify-center'> <p className='text-md font-bold'>Category</p> <span className='ml-6 inline-block'>{category?.name}</span> </div>)}
+
+{!show && (<div className='flex justify-center'> <p className='text-md font-bold'>Quantity</p> <span className='ml-6 inline-block font-bold text-red-600'>{product?.quantity}</span> </div>)}
 
 
 

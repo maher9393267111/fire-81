@@ -147,37 +147,32 @@ const AuthContext = ({ children }) => {
 
 
 
+  const RealatedProducts = async (prod,catid) => {
+    
+    
+    const q = query(collection(db, "Pro3"), where("categoryid", "==", catid), where("name", "!=", prod));
+    const unsub = onSnapshot(q, (QuerySnapshot) => {
+      let postsArray = [];
+      QuerySnapshot.forEach((doc) => {
+        postsArray.push({ ...doc.data(), id: doc.id });
+      });
+      console.log("from vivek", postsArray);
+      dispatch(setProducts(postsArray));
+     // setTodos(postsArray);
+    });
+
+    return unsub;
+    // const data = await getDocs(userCollectionRef);
+    // setTodos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
+
+
   
 
 
 
 
-  const RealatedProducts = async (prod, subid) => {
-    //console.log("productid 🚀🚀🚀🚀🚀🚀",prod, '-------',);
-    //console.log("sUbi 🔴🔴" ,'-------',subid);
-    // startAt(startAtParam), endAt(endAtParam)
-
-    onSnapshot(
-      query(
-        collection(db, "Pro3"),
-      //  where("subid", "==", `${subid}`),
-        where("name", "!=", prod)
-        // orderBy("id", "desc")
-        // ,
-        // limit(3),
-        // startAt(startat)
-      ),
-      (snapshot) => {
-        const productsArr = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-      //  dispatch(relatedproductsfetch(productsArr));
-        return productsArr;
-      }
-    );
-  };
 
 
 
@@ -380,7 +375,8 @@ setSearchedproducts(filterproducts);
     products,
     setSearchText,
     searchText,
-    SearchbyText
+    SearchbyText,
+    RealatedProducts,
    
  
   
