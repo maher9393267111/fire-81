@@ -8,7 +8,7 @@ const CartPage = () => {
 
 
     const { userinfo } = useAuth();
-    const {addtocart,cartdata,cartinfo, deleteProduct  } = Cart();
+    const {addtocart,cartdata,cartinfo, deleteProduct,increasequantity, Decreasequantity  } = Cart();
 
 // cart in realtime
 const [userdata] = useDocumentData(doc(db, "usmaher", `${userinfo?.email}`),  {
@@ -85,6 +85,74 @@ return (
 </div>
 
     </div>
+
+
+{/* - increase or decrease quantity---- */}
+
+<div>
+
+<div>
+
+
+<div className=' flex gap-8'>
+
+{/* ---- decrease quantity-- */}
+
+<div>
+
+<p onClick={() => increasequantity(item)}>
+                      <img
+                        className=" w-6 h-6 rounded-full"
+                        src="https://cdn3.iconfinder.com/data/icons/basicolor-arrows-checks/24/163_plus_add_new-128.png"
+                        alt=""
+                      />
+                    </p>
+
+
+</div>
+
+
+
+
+{/* quantity---- */}
+
+<div>
+    <p><p>{item.quantity}</p></p>
+</div>
+
+
+{/* -----decrease----- */}
+
+<div>
+                      <p onClick={() => Decreasequantity(item)}>
+                        <img
+                          className=" w-6 h-6 rounded-full"
+                          src="https://cdn3.iconfinder.com/data/icons/user-interface-buttons/64/_Delete-256.png"
+                          alt=""
+                        />
+                      </p>
+                    </div>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
     
 </div>
 

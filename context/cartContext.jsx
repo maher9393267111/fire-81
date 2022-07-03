@@ -183,7 +183,7 @@ setCartinfo(obj);
     console.log("product", product);
 
     const userpath = doc(db, "usmaher", `${userinfo?.email}`);
-    const procuctpath = doc(db, "Pro", product.id);
+    const procuctpath = doc(db, "Pro3", product.id);
     const Quantity = await (await getDoc(procuctpath)).data()?.quantity;
 
     console.log("Quantity---☢️☢️☢️☢️☢️☢️", Quantity);
