@@ -29,19 +29,19 @@ const CartPage = () => {
         <div className=" grid grid-cols-12">
           {/* ----cart items in carts---- */}
 
-          <div className=" col-span-8">
+          <div className=" sm:col-span-12 lg:col-span-8">
             {userdata?.cart?.length > 0 &&
               userdata?.cart?.map((item) => {
                 return (
                   <div key={item.id}>
                     {/* content-- */}
 
-                    <div className=" min-h-[444px]   shadow-2xl my-8 mx-6  border-2 w-[1/3] ">
+                    <div className=" min-h-[444px]  w-2/3  shadow-2xl my-8 mx-6  border-2  ">
                       {/* ---image-- */}
 
                       <div className=" w-full h-[78%]">
                         <img
-                          className="w-full h-[300px] object-contain"
+                          className="w-full h-[300px] sm:object-cover  md:object-contain"
                           src={item.image}
                           alt=""
                         />
@@ -63,7 +63,7 @@ const CartPage = () => {
                           <div className="font-bold text-xl ml-12">
                             <div className=" flex justify-between">
                               <div>
-                                <p>Quantity: {item.quantity}</p>
+                                <p className="xs:bg-yellow-200 sm:bg-green-800 md:bg-blue-500">Quantity: {item.quantity}</p>
                               </div>
 
                               {/* --Remove from cart-- */}
@@ -132,7 +132,7 @@ const CartPage = () => {
             {userdata?.cart?.length === 0 && (
               <div>
                 <div>
-                  <h1 className=" mt-24 ml-24 text-2xl">Cart is Empty</h1>
+                  <h1 className="  mt-24 ml-24 text-2xl">Cart is Empty</h1>
                 </div>
               </div>
             )}
@@ -140,7 +140,7 @@ const CartPage = () => {
 
           {/* ----checkout sidebar--- */}
 
-          <div className=" col-span-4">
+          <div className="   sm:col-span-12 md:col-span-4">
 
 
 <div>
